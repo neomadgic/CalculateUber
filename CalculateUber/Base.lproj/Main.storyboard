@@ -26,6 +26,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="kmN-Ke-Y8i">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="59Y-BD-XOm">
+                                <rect key="frame" x="16" y="71" width="343" height="365"/>
+                            </mapView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qVU-KT-Od3">
                                 <rect key="frame" x="16" y="28" width="343" height="29"/>
                                 <constraints>
@@ -56,11 +59,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0P5-YY-bcb">
-                                <rect key="frame" x="87" y="446" width="200" height="51"/>
+                                <rect key="frame" x="87" y="451" width="200" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0P5-YY-bcb" secondAttribute="height" multiplier="200:51" id="v1k-6t-b3x"/>
                                 </constraints>
                                 <state key="normal" image="calculateButton"/>
+                                <connections>
+                                    <action selector="onCalculatePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t2D-1G-ybb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ND-e7-0nk">
                                 <rect key="frame" x="16" y="597" width="343" height="50"/>
@@ -68,6 +74,9 @@
                                     <constraint firstAttribute="width" secondItem="9ND-e7-0nk" secondAttribute="height" multiplier="343:50" id="Pdc-Vg-dQ1"/>
                                 </constraints>
                                 <state key="normal" image="requestUberButton"/>
+                                <connections>
+                                    <action selector="onRequestUberPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d3k-cE-gxy"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fhs-eL-Qdi">
                                 <rect key="frame" x="30" y="517" width="315" height="60"/>
@@ -125,10 +134,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="kmN-Ke-Y8i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1ke-a7-dtb"/>
+                            <constraint firstItem="59Y-BD-XOm" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="FRW-U1-p4w"/>
                             <constraint firstItem="0P5-YY-bcb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="71" id="HPL-Ty-zj4"/>
-                            <constraint firstItem="fhs-eL-Qdi" firstAttribute="top" secondItem="0P5-YY-bcb" secondAttribute="bottom" constant="20" id="HUc-79-gny"/>
                             <constraint firstItem="fhs-eL-Qdi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="IFi-Ir-MGZ"/>
+                            <constraint firstItem="59Y-BD-XOm" firstAttribute="top" secondItem="qVU-KT-Od3" secondAttribute="bottom" constant="15" id="NjK-tV-qUw"/>
+                            <constraint firstItem="59Y-BD-XOm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="O9l-Eb-dI5"/>
                             <constraint firstItem="qVU-KT-Od3" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="PE0-od-oYc"/>
+                            <constraint firstItem="0P5-YY-bcb" firstAttribute="top" secondItem="59Y-BD-XOm" secondAttribute="bottom" constant="15" id="S94-LD-byB"/>
+                            <constraint firstItem="fhs-eL-Qdi" firstAttribute="top" secondItem="0P5-YY-bcb" secondAttribute="bottom" constant="15" id="TrV-qX-GaY"/>
                             <constraint firstItem="9ND-e7-0nk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Wiz-XA-ytX"/>
                             <constraint firstItem="kmN-Ke-Y8i" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZDH-l3-q0A"/>
                             <constraint firstItem="qVU-KT-Od3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="aOd-Og-53P"/>
@@ -142,10 +155,15 @@
                             <constraint firstAttribute="trailingMargin" secondItem="0P5-YY-bcb" secondAttribute="trailing" constant="72" id="w8s-xr-I3v"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="costLabel" destination="mfp-aE-T2O" id="64v-wI-OIe"/>
+                        <outlet property="mapView" destination="59Y-BD-XOm" id="LwB-vj-35v"/>
+                        <outlet property="pickupTimeLabel" destination="a1Q-DA-OED" id="4sP-zC-MY4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.39130434782609" y="122.28260869565219"/>
+            <point key="canvasLocation" x="116" y="121.88905547226388"/>
         </scene>
     </scenes>
     <resources>
