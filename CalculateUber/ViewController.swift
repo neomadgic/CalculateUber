@@ -12,17 +12,17 @@ import CoreLocation
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: SettingsMapView!
     @IBOutlet weak var pickupTimeLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
+    let regionRadius: CLLocationDistance = 750
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        setCurrentLocation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,6 +40,7 @@ class ViewController: UIViewController {
     
     func setCurrentLocation() {
         
+        locationManager.requestWhenInUseAuthorization()
         guard locationManager.location != nil else {
             print("Can't find location")
             printErrorAlert()
@@ -47,6 +48,7 @@ class ViewController: UIViewController {
         }
         currentLocation = locationManager.location!
         print(currentLocation.coordinate)
+        centerMapOnLocation(location: currentLocation)
     }
     
     func printErrorAlert() {
@@ -57,6 +59,11 @@ class ViewController: UIViewController {
         alert.addAction(okAction)
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
     
 }
