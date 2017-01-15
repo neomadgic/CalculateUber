@@ -10,19 +10,24 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var mapView: SettingsMapView!
     @IBOutlet weak var pickupTimeLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     
+    @IBOutlet weak var fromTableView: UITableView!
+    
+    
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     let regionRadius: CLLocationDistance = 750
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        fromTableView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,5 +79,24 @@ extension ViewController: CLLocationManagerDelegate {
         
         mapView.showsUserLocation = (status == .authorizedAlways)
     }
-    
 }
+
+//MARK: - UITableViewDataSource
+extension ViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        return ResultCell()
+    }
+}
+
