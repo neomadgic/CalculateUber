@@ -54,14 +54,46 @@
 		7615107E1E299F8900CFF825 /* CalculateUber */ = {
 			isa = PBXGroup;
 			children = (
-				7615107F1E299F8900CFF825 /* AppDelegate.swift */,
-				761510811E299F8900CFF825 /* ViewController.swift */,
+				7694FE701E2B22E7001B232D /* Essentials */,
+				7694FE711E2B22F7001B232D /* Model */,
+				7694FE721E2B22FF001B232D /* View */,
+				7694FE731E2B2303001B232D /* Controller */,
 				761510831E299F8900CFF825 /* Main.storyboard */,
 				761510861E299F8900CFF825 /* Assets.xcassets */,
-				761510881E299F8900CFF825 /* LaunchScreen.storyboard */,
-				7615108B1E299F8900CFF825 /* Info.plist */,
 			);
 			path = CalculateUber;
+			sourceTree = "<group>";
+		};
+		7694FE701E2B22E7001B232D /* Essentials */ = {
+			isa = PBXGroup;
+			children = (
+				7615108B1E299F8900CFF825 /* Info.plist */,
+				761510881E299F8900CFF825 /* LaunchScreen.storyboard */,
+				7615107F1E299F8900CFF825 /* AppDelegate.swift */,
+			);
+			name = Essentials;
+			sourceTree = "<group>";
+		};
+		7694FE711E2B22F7001B232D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7694FE721E2B22FF001B232D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7694FE731E2B2303001B232D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				761510811E299F8900CFF825 /* ViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +332,7 @@
 				761510901E299F8900CFF825 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
