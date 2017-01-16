@@ -140,8 +140,8 @@
                                     <action selector="onEnterDestinationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mMD-ZS-DgB"/>
                                 </connections>
                             </button>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lm-Mb-vu5">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7lm-Mb-vu5">
+                                <rect key="frame" x="0.0" y="645" width="375" height="22"/>
                                 <color key="backgroundColor" red="0.46666666666666667" green="0.13725490196078433" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>

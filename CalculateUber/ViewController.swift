@@ -39,14 +39,11 @@ class ViewController: UIViewController, UITableViewDelegate {
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
         
-        let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
-        navigationItem.titleView = resultSearchController?.searchBar
-        
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
+        
+        locationSearchTable.mapView = mapView
 
     }
     
@@ -73,12 +70,16 @@ class ViewController: UIViewController, UITableViewDelegate {
         
         self.navigationController?.isNavigationBarHidden = false
         blurryView.isHidden = false
+        
+        createNavigationSearchBar(withPlaceholder: "Enter Pickup Location")
     }
     
     @IBAction func onEnterDestinationPressed(_ sender: Any) {
         
         self.navigationController?.isNavigationBarHidden = false
         blurryView.isHidden = false
+        
+        createNavigationSearchBar(withPlaceholder: "Enter Destination")
     }
     
     
@@ -133,6 +134,14 @@ class ViewController: UIViewController, UITableViewDelegate {
         
         self.navigationController?.isNavigationBarHidden = true
         blurryView.isHidden = true
+    }
+    
+    func createNavigationSearchBar(withPlaceholder: String) {
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = withPlaceholder
+        navigationItem.titleView = resultSearchController?.searchBar
     }
     
 }
