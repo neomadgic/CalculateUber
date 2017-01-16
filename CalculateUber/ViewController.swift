@@ -19,17 +19,21 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var currentLocationButton: LocationButton!
     @IBOutlet weak var enterDestinationButton: LocationButton!
     
+    @IBOutlet weak var blurryView: UIView!
+    
+    
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     let regionRadius: CLLocationDistance = 750
+    
+    var screenshot = UIImage()
+    var tapToCloseNavigation: UITapGestureRecognizer?
     
     var resultSearchController: UISearchController? = nil
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        
         
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
@@ -49,6 +53,10 @@ class ViewController: UIViewController, UITableViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         
         setCurrentLocation()
+        createBlurryBackground()
+        createTapToCloseNavigation()
+        blurryView.isHidden = true
+        
     }
     
     @IBAction func onCalculatePressed(_ sender: Any) {
@@ -64,11 +72,13 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBAction func onCurrentLocationPressed(_ sender: Any) {
         
         self.navigationController?.isNavigationBarHidden = false
+        blurryView.isHidden = false
     }
     
     @IBAction func onEnterDestinationPressed(_ sender: Any) {
         
         self.navigationController?.isNavigationBarHidden = false
+        blurryView.isHidden = false
     }
     
     
@@ -100,6 +110,30 @@ class ViewController: UIViewController, UITableViewDelegate {
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
+    func createBlurryBackground() {
+
+        //create screenshot
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, true, 1)
+        self.view.drawHierarchy(in: self.view.bounds, afterScreenUpdates: false)
+        screenshot = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        let imageView = UIImageView(image: screenshot)
+        imageView.addBlurEffect()
+        blurryView.addSubview(imageView)
+    }
+    
+    func createTapToCloseNavigation() {
+        
+        tapToCloseNavigation = UITapGestureRecognizer(target: self, action: #selector(ViewController.hideNavigationController))
+        blurryView.addGestureRecognizer(tapToCloseNavigation!)
+    }
+    
+    func hideNavigationController() {
+        
+        self.navigationController?.isNavigationBarHidden = true
+        blurryView.isHidden = true
+    }
     
 }
 
@@ -108,5 +142,16 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         mapView.showsUserLocation = (status == .authorizedAlways)
+    }
+}
+
+extension UIView {
+    func addBlurEffect() {
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
+        self.addSubview(blurEffectView)
     }
 }

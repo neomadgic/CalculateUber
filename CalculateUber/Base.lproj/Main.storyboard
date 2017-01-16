@@ -140,6 +140,14 @@
                                     <action selector="onEnterDestinationPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mMD-ZS-DgB"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lm-Mb-vu5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.46666666666666667" green="0.13725490196078433" blue="0.41568627450980389" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="QQc-bS-Nd9" appends="YES" id="S00-5V-wtr"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -167,45 +175,26 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="kmN-Ke-Y8i" secondAttribute="bottom" id="ndA-WG-8Cq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CsD-Bg-bCD" secondAttribute="trailing" constant="10" id="olL-6g-9z6"/>
                             <constraint firstItem="9ND-e7-0nk" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ozt-yV-WPl"/>
+                            <constraint firstItem="7lm-Mb-vu5" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rQc-kL-GbC"/>
+                            <constraint firstAttribute="trailing" secondItem="7lm-Mb-vu5" secondAttribute="trailing" id="tAh-v2-G7N"/>
                             <constraint firstAttribute="trailing" secondItem="fhs-eL-Qdi" secondAttribute="trailing" constant="30" id="tTP-bR-f6t"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7lm-Mb-vu5" secondAttribute="bottom" id="tei-QS-IgR"/>
+                            <constraint firstItem="7lm-Mb-vu5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="w8s-76-e56"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0P5-YY-bcb" secondAttribute="trailing" constant="72" id="w8s-xr-I3v"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Oai-Ae-VfA"/>
                     <connections>
+                        <outlet property="blurryView" destination="7lm-Mb-vu5" id="DbY-ON-yyx"/>
                         <outlet property="costLabel" destination="mfp-aE-T2O" id="64v-wI-OIe"/>
                         <outlet property="currentLocationButton" destination="TfW-QR-Wbw" id="YSr-oD-sAh"/>
                         <outlet property="enterDestinationButton" destination="CsD-Bg-bCD" id="TmP-TI-URZ"/>
                         <outlet property="mapView" destination="59Y-BD-XOm" id="LwB-vj-35v"/>
                         <outlet property="pickupTimeLabel" destination="a1Q-DA-OED" id="4sP-zC-MY4"/>
-                        <outlet property="searchDisplayController" destination="rEr-aZ-g6G" id="UIm-2w-vwL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="4eJ-zf-XWe">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="hY9-yg-qIx"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="vc8-bI-BB0"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="XVz-sV-vmg"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="iDp-Uf-BdE"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="pNi-17-dIs">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="VSU-B4-yKN"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="N00-tQ-9Tb"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="Zib-sj-clT"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="7U0-7f-fhN"/>
-                    </connections>
-                </searchDisplayController>
-                <searchDisplayController id="rEr-aZ-g6G">
-                    <connections>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="U0t-kf-jKy"/>
-                        <outlet property="searchContentsController" destination="BYZ-38-t0r" id="HfY-A7-1P4"/>
-                        <outlet property="searchResultsDataSource" destination="BYZ-38-t0r" id="Fr9-D1-EKB"/>
-                        <outlet property="searchResultsDelegate" destination="BYZ-38-t0r" id="IVz-Bo-QUt"/>
-                    </connections>
-                </searchDisplayController>
+                <tapGestureRecognizer id="QQc-bS-Nd9"/>
             </objects>
             <point key="canvasLocation" x="2933.5999999999999" y="121.88905547226388"/>
         </scene>
