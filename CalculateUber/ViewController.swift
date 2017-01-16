@@ -16,22 +16,34 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var pickupTimeLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     
-    
+    @IBOutlet weak var currentLocationButton: LocationButton!
+    @IBOutlet weak var enterDestinationButton: LocationButton!
     
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     let regionRadius: CLLocationDistance = 750
     
-    @IBOutlet weak var currentLocationButton: LocationButton!
-    @IBOutlet weak var enterDestinationButton: LocationButton!
-    
-    
-
-    
+    var resultSearchController: UISearchController? = nil
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
+        
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,6 +99,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    
     
 }
 
