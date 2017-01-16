@@ -16,18 +16,22 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var pickupTimeLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!
     
-    @IBOutlet weak var fromTableView: UITableView!
     
     
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     let regionRadius: CLLocationDistance = 750
     
+    @IBOutlet weak var currentLocationButton: LocationButton!
+    @IBOutlet weak var enterDestinationButton: LocationButton!
+    
+    
+
+    
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        fromTableView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,11 +41,24 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     @IBAction func onCalculatePressed(_ sender: Any) {
         
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func onRequestUberPressed(_ sender: Any) {
         
+        self.navigationController?.isNavigationBarHidden = true
     }
+    
+    @IBAction func onCurrentLocationPressed(_ sender: Any) {
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    @IBAction func onEnterDestinationPressed(_ sender: Any) {
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     
     func setCurrentLocation() {
         
@@ -80,23 +97,3 @@ extension ViewController: CLLocationManagerDelegate {
         mapView.showsUserLocation = (status == .authorizedAlways)
     }
 }
-
-//MARK: - UITableViewDataSource
-extension ViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 4
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        return ResultCell()
-    }
-}
-
