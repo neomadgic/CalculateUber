@@ -10,6 +10,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
+
+protocol HandleMapSearch {
+    
+    func dropPinZoomIn(placemark:MKPlacemark)
+}
+
 class ViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var mapView: SettingsMapView!
@@ -31,6 +37,9 @@ class ViewController: UIViewController, UITableViewDelegate {
     
     var resultSearchController: UISearchController? = nil
     
+    var selectedPin:MKPlacemark? = nil
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -44,6 +53,8 @@ class ViewController: UIViewController, UITableViewDelegate {
         definesPresentationContext = true
         
         locationSearchTable.mapView = mapView
+        
+        locationSearchTable.handleMapSearchDelegate = self
 
     }
     
@@ -64,6 +75,13 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBAction func onRequestUberPressed(_ sender: Any) {
         
         self.navigationController?.isNavigationBarHidden = true
+    
+        if selectedPin != nil {
+            print(selectedPin?.coordinate as Any)
+        }
+        else {
+            print("nil")
+        }
     }
     
     @IBAction func onCurrentLocationPressed(_ sender: Any) {
@@ -162,5 +180,25 @@ extension UIView {
         blurEffectView.frame = self.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
         self.addSubview(blurEffectView)
+    }
+}
+
+extension ViewController: HandleMapSearch {
+    func dropPinZoomIn(placemark:MKPlacemark){
+        // cache the pin
+        selectedPin = placemark
+        // clear existing pins
+        mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
     }
 }
