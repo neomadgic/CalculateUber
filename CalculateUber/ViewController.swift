@@ -170,8 +170,8 @@ class ViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor(0x8768A8) //8768A8
-        renderer.lineWidth = 4.0
+        renderer.strokeColor = UIColor(0x89A12F)
+        renderer.lineWidth = 5.0
         
         return renderer
     }
