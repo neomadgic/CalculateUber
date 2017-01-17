@@ -13,8 +13,10 @@ import CoreLocation
 
 protocol HandleMapSearch {
     
-    func dropPinZoomIn(placemark:MKPlacemark)
+    func dropDestinationPin(placemark:MKPlacemark)
+    func dropStartingPin(placemark:MKPlacemark)
 }
+
 
 class ViewController: UIViewController, UITableViewDelegate {
     
@@ -38,6 +40,11 @@ class ViewController: UIViewController, UITableViewDelegate {
     var resultSearchController: UISearchController? = nil
     
     var selectedPin:MKPlacemark? = nil
+    
+    var startingPin: MKPlacemark? = nil
+    var startingAnnotation = MKPointAnnotation()
+    
+    var isDestinationSearch = false
     
     
     override func viewDidLoad() {
@@ -90,6 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         blurryView.isHidden = false
         
         createNavigationSearchBar(withPlaceholder: "Enter Pickup Location")
+        isDestinationSearch = false
     }
     
     @IBAction func onEnterDestinationPressed(_ sender: Any) {
@@ -98,6 +106,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         blurryView.isHidden = false
         
         createNavigationSearchBar(withPlaceholder: "Enter Destination")
+        isDestinationSearch = true
     }
     
     
@@ -184,11 +193,15 @@ extension UIView {
 }
 
 extension ViewController: HandleMapSearch {
-    func dropPinZoomIn(placemark:MKPlacemark){
+    
+    func dropDestinationPin(placemark:MKPlacemark) {
+        
         // cache the pin
         selectedPin = placemark
         // clear existing pins
         mapView.removeAnnotations(mapView.annotations)
+        
+        
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         annotation.title = placemark.name
@@ -200,5 +213,30 @@ extension ViewController: HandleMapSearch {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func dropStartingPin(placemark: MKPlacemark) {
+        
+        // cache the pin
+        startingPin = placemark
+        
+        // clear existing pins
+        mapView.removeAnnotation(startingAnnotation)
+        
+        //create new annotation and add onto the map
+        startingAnnotation.coordinate = placemark.coordinate
+        startingAnnotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            startingAnnotation.subtitle = "\(city) \(state)"
+        }
+        mapView.addAnnotation(startingAnnotation)
+        
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
+        
+        currentLocationButton.setTitle("    \(placemark.name!)", for: .normal)
+        currentLocationButton.setTitleColor(UIColor.black, for: .normal)
     }
 }
