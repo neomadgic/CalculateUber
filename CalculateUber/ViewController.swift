@@ -79,18 +79,14 @@ class ViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
     
     @IBAction func onCurrentLocationPressed(_ sender: Any) {
         
-        self.navigationController?.isNavigationBarHidden = false
-        blurryView.isHidden = false
-        
+        showNavigationController()
         createNavigationSearchBar(withPlaceholder: "Enter Pickup Location")
         isDestinationSearch = false
     }
     
     @IBAction func onEnterDestinationPressed(_ sender: Any) {
         
-        self.navigationController?.isNavigationBarHidden = false
-        blurryView.isHidden = false
-        
+        showNavigationController()
         createNavigationSearchBar(withPlaceholder: "Enter Destination")
         isDestinationSearch = true
     }
@@ -161,6 +157,12 @@ class ViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
         
         self.navigationController?.isNavigationBarHidden = true
         blurryView.isHidden = true
+    }
+    
+    func showNavigationController() {
+        
+        self.navigationController?.isNavigationBarHidden = false
+        blurryView.isHidden = false
     }
     
     func createNavigationSearchBar(withPlaceholder: String) {
