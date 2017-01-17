@@ -50,11 +50,8 @@ class ViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         mapView.delegate = self
-        
         createLocationSearchTableSettings()
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,6 +65,10 @@ class ViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
     
     @IBAction func onCalculatePressed(_ sender: Any) {
         
+        guard startingPin != nil, endingPin != nil else {
+            printErrorAlert(with: alertError.emptySearchButton, message: alertError.emptySearchMessage)
+            return
+        }
         drawDirection()
     }
     
@@ -100,7 +101,7 @@ class ViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
         locationManager.requestWhenInUseAuthorization()
         guard locationManager.location != nil else {
             print("Can't find location")
-            printErrorAlert()
+            printErrorAlert(with: alertError.unableToFindLocation, message: alertError.locationMessage)
             return
         }
         currentLocation = locationManager.location!
@@ -109,13 +110,11 @@ class ViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
         startingPin = MKPlacemark(coordinate: currentLocation.coordinate)
     }
     
-    func printErrorAlert() {
+    func printErrorAlert(with: String, message: String) {
         
-        let alert = UIAlertController(title: "Location Services Disabled", message: "Please enable Location Services in Settings in order for CalculateUber to set your starting location", preferredStyle: .alert)
-        
+        let alert = UIAlertController(title: with, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okAction)
-        
         self.present(alert, animated: true, completion: nil)
     }
     

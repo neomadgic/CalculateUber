@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
+    
     func addBlurEffect() {
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
