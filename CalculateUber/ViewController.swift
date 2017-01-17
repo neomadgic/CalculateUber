@@ -10,7 +10,6 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
 protocol HandleMapSearch {
 
     func dropPin(placemark:MKPlacemark)
