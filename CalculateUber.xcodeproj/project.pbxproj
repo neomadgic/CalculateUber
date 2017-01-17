@@ -14,6 +14,7 @@
 		7615108A1E299F8900CFF825 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 761510881E299F8900CFF825 /* LaunchScreen.storyboard */; };
 		765DC7FB1E2C3E8400FF0D4C /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DC7FA1E2C3E8400FF0D4C /* LocationSearchTable.swift */; };
 		765DC7FD1E2C475300FF0D4C /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DC7FC1E2C475300FF0D4C /* LocationButton.swift */; };
+		76722EA41E2DCCCA00C81D74 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76722EA31E2DCCCA00C81D74 /* UIColor+Extension.swift */; };
 		76CD0F451E2C2F77006F958B /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CD0F441E2C2F77006F958B /* ResultCell.swift */; };
 		76DF082D1E2B5D0500BAF4BF /* SettingsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF082C1E2B5D0500BAF4BF /* SettingsMapView.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		7615108B1E299F8900CFF825 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		765DC7FA1E2C3E8400FF0D4C /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		765DC7FC1E2C475300FF0D4C /* LocationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
+		76722EA31E2DCCCA00C81D74 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		76CD0F441E2C2F77006F958B /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		76DF082C1E2B5D0500BAF4BF /* SettingsMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 		769272591E2DCAFF0079AFE1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				76722EA31E2DCCCA00C81D74 /* UIColor+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76722EA41E2DCCCA00C81D74 /* UIColor+Extension.swift in Sources */,
 				765DC7FD1E2C475300FF0D4C /* LocationButton.swift in Sources */,
 				76DF082D1E2B5D0500BAF4BF /* SettingsMapView.swift in Sources */,
 				765DC7FB1E2C3E8400FF0D4C /* LocationSearchTable.swift in Sources */,
