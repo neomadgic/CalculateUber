@@ -16,6 +16,7 @@
 		765DC7FD1E2C475300FF0D4C /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DC7FC1E2C475300FF0D4C /* LocationButton.swift */; };
 		76722EA41E2DCCCA00C81D74 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76722EA31E2DCCCA00C81D74 /* UIColor+Extension.swift */; };
 		76CD0F451E2C2F77006F958B /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CD0F441E2C2F77006F958B /* ResultCell.swift */; };
+		76D5A0FF1E2DEC0300AF4596 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D5A0FE1E2DEC0300AF4596 /* UIView+Extension.swift */; };
 		76DF082D1E2B5D0500BAF4BF /* SettingsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF082C1E2B5D0500BAF4BF /* SettingsMapView.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		765DC7FC1E2C475300FF0D4C /* LocationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		76722EA31E2DCCCA00C81D74 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		76CD0F441E2C2F77006F958B /* ResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
+		76D5A0FE1E2DEC0300AF4596 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		76DF082C1E2B5D0500BAF4BF /* SettingsMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				76722EA31E2DCCCA00C81D74 /* UIColor+Extension.swift */,
+				76D5A0FE1E2DEC0300AF4596 /* UIView+Extension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			files = (
 				76722EA41E2DCCCA00C81D74 /* UIColor+Extension.swift in Sources */,
 				765DC7FD1E2C475300FF0D4C /* LocationButton.swift in Sources */,
+				76D5A0FF1E2DEC0300AF4596 /* UIView+Extension.swift in Sources */,
 				76DF082D1E2B5D0500BAF4BF /* SettingsMapView.swift in Sources */,
 				765DC7FB1E2C3E8400FF0D4C /* LocationSearchTable.swift in Sources */,
 				761510821E299F8900CFF825 /* ViewController.swift in Sources */,

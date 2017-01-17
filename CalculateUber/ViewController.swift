@@ -53,17 +53,7 @@ class ViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
         
         mapView.delegate = self
         
-        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
-        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        resultSearchController?.searchResultsUpdater = locationSearchTable
-        
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true
-        
-        locationSearchTable.mapView = mapView
-        
-        locationSearchTable.handleMapSearchDelegate = self
+        createLocationSearchTableSettings()
 
     }
     
@@ -153,6 +143,21 @@ class ViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
         blurryView.addGestureRecognizer(tapToCloseNavigation!)
     }
     
+    func createLocationSearchTableSettings() {
+        
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        
+        locationSearchTable.mapView = mapView
+        
+        locationSearchTable.handleMapSearchDelegate = self
+    }
+    
     func hideNavigationController() {
         
         self.navigationController?.isNavigationBarHidden = true
@@ -213,17 +218,6 @@ extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         mapView.showsUserLocation = (status == .authorizedAlways)
-    }
-}
-
-extension UIView {
-    func addBlurEffect() {
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
-        self.addSubview(blurEffectView)
     }
 }
 
